@@ -30,19 +30,20 @@ router.route('/testimonials').post((req, res) => {
   res.json({ message: 'Ok' });
 });
 
-// router.route('/testimonials/:id').put((req, res) => {
-//   const id = req.params.id;
-//   const findItem = db.testimonials.find((data) => data.id == req.params.id);
-//   const index = db.testimonials.indexOf(findItem);
-//   const { author, text } = req.body;
-//   const changeItem = {
-//     id: id,
-//     author: author,
-//     text: text,
-//   };
+router.route('/testimonials/:id').put((req, res) => {
+  const id = req.params.id;
+  const findItem = db.testimonials.find((data) => data.id == req.params.id);
+  const index = db.testimonials.indexOf(findItem);
+  const { author, text } = req.body;
+  const changeItem = {
+    id: id,
+    author: author,
+    text: text,
+  };
 
-//   res.json({ message: 'Ok' });
-// });
+  db.testimonials[index] = changeItem;
+  res.json({ message: 'Ok' });
+});
 
 router.route('/testimonials/:id').delete((req, res) => {
   const item = db.testimonials.find((data) => data.id == req.param.id);
