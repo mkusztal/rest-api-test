@@ -1,5 +1,5 @@
 const express = require('express');
-const uuid = require('uuid').v4;
+const { v4: uuid } = require('uuid');
 const db = require('../db.js');
 const router = express.Router();
 
@@ -35,7 +35,7 @@ router.route('/concerts').post((req, res) => {
 
 router.route('/concerts/:id').put((req, res) => {
   const id = req.params.id;
-  const findItem = db.concerts.find((data) => data.id == req.params.id);
+  const findItem = db.concerts.find((data) => data.id == id);
   const index = db.concerts.indexOf(findItem);
   const { performer, genre, price, day, image } = req.body;
   const changeItem = {
